@@ -1,16 +1,5 @@
+use super::header::InvocationHeader;
 use super::line::Line;
-
-/// The header of an invocation block.
-///
-/// An invocation block starts with a line whose [`content`](Line::content) begins
-/// with `::`. The header will hold the parsed name, arguments, and other
-/// metadata extracted from that line.
-///
-/// Currently, a placeholder — header parsing is deferred to a later stage.
-#[derive(Debug, Clone, PartialEq, Eq)]
-pub struct InvocationHeader {
-    // TODO: parse `::` line — name, args, etc.
-}
 
 /// A natural block (自然块).
 ///
@@ -99,7 +88,7 @@ pub fn split_blocks(lines: &[Line]) -> Vec<Block> {
         // Check if this is an invocation block
         if lines[i].content().starts_with("::") {
             let base_indentation = lines[i].indentation;
-            let header = InvocationHeader {};
+            let header = InvocationHeader::parse(&lines[i]);
             i += 1; // skip the :: header line
 
             // Collect interior lines.
