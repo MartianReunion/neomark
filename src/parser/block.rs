@@ -444,7 +444,7 @@ mod tests {
             "这里缩进同时不满足两个嵌套调用块的缩进，那么这里就是第四个自然块。\n",
             "\n",
             "::func\n",
-            "一个调用块可以没有内部的行，而只有首行。\n",
+            "一个调用块可以没有内部的行，而只有头部。\n",
             "\n",
             "::func\n",
             "  尽管 Neomark 解析器被设计为可以解析，但最好的写法仍然是在调用块的上下也留出空格。\n",
@@ -533,13 +533,13 @@ mod tests {
             _ => panic!("Block 5: expected Invocation (header-only)"),
         }
 
-        // Block 6: "一个调用块可以没有内部的行，而只有首行。"
+        // Block 6: "一个调用块可以没有内部的行，而只有头部。"
         match &blocks[6].content {
             BlockKind::Natural(n) => {
                 assert_eq!(n.lines.len(), 1);
                 assert_eq!(
                     n.lines[0].content(),
-                    "一个调用块可以没有内部的行，而只有首行。"
+                    "一个调用块可以没有内部的行，而只有头部。"
                 );
             }
             _ => panic!("Block 6: expected Natural"),
