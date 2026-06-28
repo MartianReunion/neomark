@@ -71,7 +71,7 @@ fn skip_spaces(s: &str) -> &str {
 /// Read the invocation name.
 ///
 /// If the name starts with `"` it is read as a quoted string (supporting the
-/// same `\"` / `\\` escapes as quoted parameter names/values). Otherwise the
+/// same `\"` / `\\` escapes as quoted parameter names/values). Otherwise, the
 /// name extends to the first space or end of string.
 fn read_name(s: &str) -> (String, &str) {
     let bytes = s.as_bytes();
